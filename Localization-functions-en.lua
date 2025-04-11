@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 06.05.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ NECROSIS_SPELL_TABLE = {
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
 -- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
+-- Type 4 = Timer de malï¿½diction
 -- Type 5 = Timer de combat
 
 NECROSIS_ITEM = {
@@ -157,6 +157,7 @@ NECROSIS_ITEM = {
 	["Healthstone"] = "Healthstone",
 	["Spellstone"] = "Spellstone",
 	["Firestone"] = "Firestone",
+	["Felstone"] = "Felstone",
 	["Offhand"] = "Held In Off-hand",
 	["Twohand"] = "Two-Hand",
 	["InfernalStone"] = "Infernal Stone",
@@ -183,7 +184,8 @@ NECROSIS_CREATE = {
 	[1] = "Create Soulstone",
 	[2] = "Create Healthstone",
 	[3] = "Create Spellstone",
-	[4] = "Create Firestone"
+	[4] = "Create Firestone",
+	[5] = "Create Felstone"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

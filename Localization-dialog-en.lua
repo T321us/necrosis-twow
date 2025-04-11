@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 -- 
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 06.05.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -45,6 +45,7 @@ function Necrosis_Localization_Dialog_En()
 			["Healthstone"] = "Healthstone : ",
 			["Spellstone"] = "Spellstone : ",
 			["Firestone"] = "Firestone : ",
+			["Felstone"] = "Felstone : ",
 			["CurrentDemon"] = "Demon : ",
 			["EnslavedDemon"] = "Demon : Enslaved",
 			["NoCurrentDemon"] = "Demon : None",
@@ -64,6 +65,10 @@ function Necrosis_Localization_Dialog_En()
 		["Firestone"] = {
 			Label = "|c00FF4444Firestone|r",
 			Text = {"Create","In Inventory","Held in hand"}
+		},
+		["Felstone"] = {
+			Label = "|c00FF4444Felstone|r",
+			Text = {"Create","Use"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpell Durations|r",
@@ -192,7 +197,10 @@ function Necrosis_Localization_Dialog_En()
 			["SoulShardNotPresent"] = "You need a Soul shard to do that !",
 			["DemoniacStoneNotPresent"] = "You need a Demoniac Figurine to do that !",
 			["NoRiding"] = "You do not have any Steed to ride !",
+			["FireStoneSpellInCombat"] = "You cannot use a Firestone in combat",
 			["NoFireStoneSpell"] = "You do not have any Firestone creation spell",
+			["FelStoneSpellInCombat"] = "You cannot use a Felstone in combat",
+			["NoFelStoneSpell"] = "You do not have any Felstone creation spell",
 			["NoSpellStoneSpell"] = "You do not have any Spellstone creation spell",
 			["NoHealthStoneSpell"] = "You do not have any Healthstone creation spell",
 			["NoSoulStoneSpell"] = "You do not have any Soulstone creation spell",
@@ -286,6 +294,7 @@ function Necrosis_Localization_Dialog_En()
 		["Skin"] = "Skin of the Necrosis Sphere",
 		["Show"] = {
 			["Firestone"] = "Show Firestone button",
+			["Felstone"] = "Show Felstone button",
 			["Spellstone"] = "Show Spellstone button",
 			["Healthstone"] = "Show Healthstone button",
 			["Soulstone"] = "Show Soulstone button",

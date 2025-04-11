@@ -11,6 +11,9 @@
    	<Binding name="FIRESTONE" header="NECRO_BIND">
     		Necrosis_UseItem("Firestone");
    	</Binding>
+	<Binding name="FELSTONE" header="NECRO_BIND">
+    		Necrosis_UseItem("Felstone");
+   	</Binding>
 	<Binding name="STEED" header="NECRO_BIND">
     		Necrosis_UseItem("Mount");
    	</Binding>

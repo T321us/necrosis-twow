@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 --
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 28.06.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -38,8 +38,8 @@ function Necrosis_Initialize()
 	--end
 
 
-	-- On initialise ! Si le joueur n'est pas Démoniste, on cache Necrosis (chuuuut !)
-	-- On indique aussi que Nécrosis est initialisé maintenant
+	-- On initialise ! Si le joueur n'est pas Dï¿½moniste, on cache Necrosis (chuuuut !)
+	-- On indique aussi que Nï¿½crosis est initialisï¿½ maintenant
 	if UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		HideUIPanel(NecrosisShardMenu);
 		HideUIPanel(NecrosisSpellTimerButton);
@@ -54,8 +54,9 @@ function Necrosis_Initialize()
 		HideUIPanel(NecrosisSoulstoneButton);
 		HideUIPanel(NecrosisAntiFearButton);
 		HideUIPanel(NecrosisShadowTranceButton);
+		HideUIPanel(NecrosisFelstoneButton);
 	else
-		-- On charge (ou on crée) la configuration pour le joueur et on l'affiche sur la console
+		-- On charge (ou on crï¿½e) la configuration pour le joueur et on l'affiche sur la console
 		if NecrosisConfig == nil or NecrosisConfig.Version ~= Default_NecrosisConfig.Version then
 			NecrosisConfig = {};
 			NecrosisConfig = Default_NecrosisConfig;
@@ -74,35 +75,36 @@ function Necrosis_Initialize()
 		end
 	
 		-----------------------------------------------------------
-		-- Exécution des fonctions de démarrage
+		-- Exï¿½cution des fonctions de dï¿½marrage
 		-----------------------------------------------------------
 
 		-- Affichage d'un message sur la console
 		Necrosis_Msg(NECROSIS_MESSAGE.Interface.Welcome, "USER");
-		-- Création de la liste des sorts disponibles
+		-- Crï¿½ation de la liste des sorts disponibles
 		Necrosis_SpellSetup();
-		-- Création de la liste des emplacements des fragments
+		-- Crï¿½ation de la liste des emplacements des fragments
 		Necrosis_SoulshardSetup();
-		-- Inventaire des pierres et des fragments possédés par le Démoniste
+		-- Inventaire des pierres et des fragments possï¿½dï¿½s par le Dï¿½moniste
 		Necrosis_BagExplore();
-		-- Création des menus de buff et d'invocation
+		-- Crï¿½ation des menus de buff et d'invocation
 		Necrosis_CreateMenu();
 
-		-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
+		-- Lecture de la configuration dans le SavedVariables.lua, ï¿½criture dans les variables dï¿½finies
 		if (NecrosisConfig.SoulshardSort) then NecrosisSoulshardSort_Button:SetChecked(1); end
 		if (NecrosisConfig.SoulshardDestroy) then NecrosisSoulshardDestroy_Button:SetChecked(1); end
 		if (NecrosisConfig.ShadowTranceAlert) then NecrosisShadowTranceAlert_Button:SetChecked(1); end
 		if (NecrosisConfig.ShowSpellTimers) then NecrosisShowSpellTimers_Button:SetChecked(1); end
 		if (NecrosisConfig.AntiFearAlert) then NecrosisAntiFearAlert_Button:SetChecked(1); end
 		if (NecrosisConfig.NecrosisLockServ) then NecrosisIconsLock_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[1]) then NecrosisShowFirestone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[2]) then NecrosisShowSpellstone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[3]) then NecrosisShowHealthStone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[4]) then NecrosisShowSoulstone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[5]) then NecrosisShowBuffMenu_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[6]) then NecrosisShowMount_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[7]) then NecrosisShowPetMenu_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[8]) then NecrosisShowCurseMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[1]) then NecrosisShowFelstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[2]) then NecrosisShowFirestone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[3]) then NecrosisShowSpellstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[4]) then NecrosisShowHealthStone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[5]) then NecrosisShowSoulstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[6]) then NecrosisShowBuffMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[7]) then NecrosisShowMount_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[8]) then NecrosisShowPetMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[9]) then NecrosisShowCurseMenu_Button:SetChecked(1); end
 		if (NecrosisConfig.NecrosisToolTip) then NecrosisShowTooltips_Button:SetChecked(1); end
 		if (NecrosisConfig.Sound) then NecrosisSound_Button:SetChecked(1); end
 		if (NecrosisConfig.ShowCount) then NecrosisShowCount_Button:SetChecked(1); end
@@ -119,7 +121,7 @@ function Necrosis_Initialize()
 		if not (NecrosisConfig.Yellow) then NecrosisTimerColor_Button:SetChecked(1); end
 		if (NecrosisConfig.SensListe == -1) then NecrosisTimerDirection_Button:SetChecked(1); end
 
-		-- Paramètres des glissières		
+		-- Paramï¿½tres des glissiï¿½res		
 		NecrosisButtonRotate_Slider:SetValue(NecrosisConfig.NecrosisAngle);
 		NecrosisButtonRotate_SliderLow:SetText("0");
 		NecrosisButtonRotate_SliderHigh:SetText("360");
@@ -175,29 +177,29 @@ function Necrosis_Initialize()
 		NecrosisBanishScale_SliderLow:SetText("100 %");
 		NecrosisBanishScale_SliderHigh:SetText("200 %");
 
-		-- On règle la taille de la pierre et des boutons suivant les réglages du SavedVariables
+		-- On rï¿½gle la taille de la pierre et des boutons suivant les rï¿½glages du SavedVariables
 		NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale/100);
 		NecrosisShadowTranceButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
 		NecrosisAntiFearButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
 		NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale/100);
 
-		-- On définit l'affichage des Timers à gauche ou à droite du bouton
+		-- On dï¿½finit l'affichage des Timers ï¿½ gauche ou ï¿½ droite du bouton
 		NecrosisListSpells:ClearAllPoints();
 		NecrosisListSpells:SetJustifyH(NecrosisConfig.SpellTimerJust);
 		NecrosisListSpells:SetPoint("TOP"..NecrosisConfig.SpellTimerJust, "NecrosisSpellTimerButton", "CENTER", NecrosisConfig.SpellTimerPos * 23, 5);	
 		ShowUIPanel(NecrosisButton);
 		
-		-- On définit également l'affichage des tooltips pour ces timers à gauche ou à droite du bouton
+		-- On dï¿½finit ï¿½galement l'affichage des tooltips pour ces timers ï¿½ gauche ou ï¿½ droite du bouton
 		if NecrosisConfig.SpellTimerJust == -23 then 
 			AnchorSpellTimerTooltip = "ANCHOR_LEFT";
 		else
 			AnchorSpellTimerTooltip = "ANCHOR_RIGHT";
 		end
 		
-		-- On vérifie que les fragments sont dans le sac défini par le Démoniste
+		-- On vï¿½rifie que les fragments sont dans le sac dï¿½fini par le Dï¿½moniste
 		Necrosis_SoulshardSwitch("CHECK");
 
-		-- Le Shard est-il vérouillé sur l'interface ?
+		-- Le Shard est-il vï¿½rouillï¿½ sur l'interface ?
 		if NecrosisConfig.NoDragAll then
 			Necrosis_NoDrag();
 			NecrosisButton:RegisterForDrag("");
@@ -208,10 +210,10 @@ function Necrosis_Initialize()
 			NecrosisSpellTimerButton:RegisterForDrag("LeftButton");
 		end
 		
-		-- Les boutons sont-ils vérouillés sur le Shard ?
+		-- Les boutons sont-ils vï¿½rouillï¿½s sur le Shard ?
 		Necrosis_ButtonSetup();
 		
-		-- Si le démoniste a une arme une main d'équipée, on lui équipe le premier objet lié main gauche
+		-- Si le dï¿½moniste a une arme une main d'ï¿½quipï¿½e, on lui ï¿½quipe le premier objet liï¿½ main gauche
 		Necrosis_MoneyToggle();
 		NecrosisTooltip:SetInventoryItem("player", 16);
 		local itemName = tostring(NecrosisTooltipTextLeft2:GetText());
@@ -223,7 +225,7 @@ function Necrosis_Initialize()
 			Necrosis_SwitchOffHand(NECROSIS_ITEM.Offhand);
 		end
 
-		-- Initialisation des fichiers de langues -- Mise en place éventuelle du SMS
+		-- Initialisation des fichiers de langues -- Mise en place ï¿½ventuelle du SMS
 		Necrosis_LanguageInitialize();
 		if NecrosisConfig.SM then
 			NECROSIS_SOULSTONE_ALERT_MESSAGE = NECROSIS_SHORT_MESSAGES[1];
@@ -253,6 +255,7 @@ function Necrosis_LanguageInitialize()
 	NecrosisIconsLock_Option:SetText(NECROSIS_CONFIGURATION.ButtonLock);
 		
 	NecrosisShowFirestone_Option:SetText(NECROSIS_CONFIGURATION.Show.Firestone);
+	NecrosisShowFelstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Felstone);
 	NecrosisShowSpellstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Spellstone);
 	NecrosisShowHealthStone_Option:SetText(NECROSIS_CONFIGURATION.Show.Healthstone);
 	NecrosisShowSoulstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Soulstone);
@@ -299,7 +302,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Necrosis_SlashHandler(arg1)
-	-- Blah blah blah, le joueur est-il bien un Démoniste ? On finira par le savoir !
+	-- Blah blah blah, le joueur est-il bien un Dï¿½moniste ? On finira par le savoir !
 	if UnitClass("player") ~= NECROSIS_UNIT_WARLOCK then
 		return;
 	end

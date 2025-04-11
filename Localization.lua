@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 -- 
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 05.09.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -27,6 +27,7 @@ BINDING_NAME_SOULSTONE = "Pierre d'\195\162me / Soulstone";
 BINDING_NAME_HEALTHSTONE = "Pierre de soins / Healthstone";
 BINDING_NAME_SPELLSTONE = "Pierre de sort / Spellstone";
 BINDING_NAME_FIRESTONE = "Pierre de feu / Firestone";
+BINDING_NAME_FELSTONE = "Gangrepierre / Felstone";
 BINDING_NAME_STEED = "Monture / Steed";
 BINDING_NAME_WARD = "Gardien de l'ombre / Shadow Ward";
 BINDING_NAME_BANISH = "Bannir / Ban";

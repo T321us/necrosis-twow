@@ -233,6 +233,7 @@
 						else
 							NecrosisConfig.NecrosisLockServ = false;
 							Necrosis_ClearAllPoints();
+							NecrosisFelstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -155,-100);
 							NecrosisFirestoneButton:SetPoint("CENTER", "UIParent", "CENTER", -121,-100);
 							NecrosisSpellstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -87,-100);
 							NecrosisHealthstoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100);
