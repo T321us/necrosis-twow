@@ -322,7 +322,6 @@ function Necrosis_OnUpdate()
 			NecrosisBuffMenu6:SetAlpha(AlphaBuffMenu);
 			NecrosisBuffMenu7:SetAlpha(AlphaBuffMenu);
 			NecrosisBuffMenu8:SetAlpha(AlphaBuffMenu);
-			NecrosisBuffMenu9:SetAlpha(AlphaBuffMenu);
 			AlphaBuffMenu = AlphaBuffMenu - 0.1;
 		end
 		if AlphaBuffMenu <= 0 then
@@ -1178,8 +1177,6 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		if Soulshards == 0 then
 			GameTooltip:AddLine("|c00FF4444"..NecrosisTooltipData.Main.Soulshard..Soulshards.."|r");
 		end
-	elseif (type == "SoulLink") then
-		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[38].Mana.." Mana");
 	elseif (type == "ShadowProtection") then
 		GameTooltip:AddLine(NECROSIS_SPELL_TABLE[43].Mana.." Mana");
 		if start2 > 0 and duration2 > 0 then
@@ -1594,25 +1591,18 @@ function Necrosis_UpdateIcons()
 				NecrosisBuffMenu5:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\TPButton-01");
 			end
 		end
-		if NECROSIS_SPELL_TABLE[38].ID then
-			if NECROSIS_SPELL_TABLE[38].Mana > mana then
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Lien-03");
-			else
-				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Lien-01");
-			end
-		end
 		if NECROSIS_SPELL_TABLE[43].ID then
 			if NECROSIS_SPELL_TABLE[43].Mana > mana then
-				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-03");
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-03");
 			else
-				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-01");
+				NecrosisBuffMenu7:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\ShadowWard-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[9].ID then
 			if NECROSIS_SPELL_TABLE[9].Mana > mana then
-				NecrosisBuffMenu9:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Banish-03");
+				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Banish-03");
 			else
-				NecrosisBuffMenu9:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Banish-01");
+				NecrosisBuffMenu8:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Banish-01");
 			end
 		end
 		if NECROSIS_SPELL_TABLE[44].ID then
@@ -2571,7 +2561,6 @@ function Necrosis_BuffMenu(button)
 		NecrosisBuffMenu6:SetAlpha(1);
 		NecrosisBuffMenu7:SetAlpha(1);
 		NecrosisBuffMenu8:SetAlpha(1);
-		NecrosisBuffMenu9:SetAlpha(1);
 		BuffMenuCreate[1]:ClearAllPoints();		
 		BuffMenuCreate[1]:SetPoint("CENTER", "NecrosisBuffMenuButton", "CENTER", ((36 / NecrosisConfig.BuffMenuPos) * 31) , 26);
 		AlphaPetVar = GetTime() + 3;
@@ -2680,7 +2669,7 @@ function Necrosis_CreateMenu()
 		menuVariable:Hide();
 	end
 	-- On cache toutes les icones des sorts
-	for i = 1, 9, 1 do
+	for i = 1, 8, 1 do
 		menuVariable = getglobal("NecrosisBuffMenu"..i);
 		menuVariable:Hide();
 	end
@@ -2822,28 +2811,20 @@ function Necrosis_CreateMenu()
 		BuffButtonPosition = 6;
 		table.insert(BuffMenuCreate, menuVariable);
 	end
-	-- Si le Lien Spirituel existe, on affiche le bouton dans le menu des buffs
-	if NECROSIS_SPELL_TABLE[38].ID then
+	-- Si la protection contre les ombres existe, on affiche le bouton dans le menu des buffs
+	if NECROSIS_SPELL_TABLE[43].ID then
 		menuVariable = getglobal("NecrosisBuffMenu7");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / NecrosisConfig.BuffMenuPos) * 31), 0);
 		BuffButtonPosition = 7;
 		table.insert(BuffMenuCreate, menuVariable);
 	end
-	-- Si la protection contre les ombres existe, on affiche le bouton dans le menu des buffs
-	if NECROSIS_SPELL_TABLE[43].ID then
+	-- Si le banissement existe, on affiche le bouton dans le menu des buffs
+	if NECROSIS_SPELL_TABLE[9].ID then
 		menuVariable = getglobal("NecrosisBuffMenu8");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / NecrosisConfig.BuffMenuPos) * 31), 0);
 		BuffButtonPosition = 8;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	-- Si le banissement existe, on affiche le bouton dans le menu des buffs
-	if NECROSIS_SPELL_TABLE[9].ID then
-		menuVariable = getglobal("NecrosisBuffMenu9");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "NecrosisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / NecrosisConfig.BuffMenuPos) * 31), 0);
-		BuffButtonPosition = 9;
 		table.insert(BuffMenuCreate, menuVariable);
 	end
 

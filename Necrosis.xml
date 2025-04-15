@@ -605,17 +605,17 @@
 				HideUIPanel(NecrosisBuffMenu7);
 			</OnLoad>
 			<OnEnter>
-				Necrosis_BuildTooltip(this, "SoulLink", "ANCHOR_RIGHT");
+				Necrosis_BuildTooltip(this, "ShadowProtection", "ANCHOR_RIGHT");
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnClick>
-				Necrosis_BuffCast(38);
+				Necrosis_BuffCast(43);
 			</OnClick>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Necrosis\UI\Lien-01"/>
-		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Lien-02"/>
+		<NormalTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-01"/>
+		<HighlightTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-02"/>
 	</Button>
 	<Button name="NecrosisBuffMenu8" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
@@ -632,35 +632,6 @@
 			<OnLoad>
 				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 				HideUIPanel(NecrosisBuffMenu8);
-			</OnLoad>
-			<OnEnter>
-				Necrosis_BuildTooltip(this, "ShadowProtection", "ANCHOR_RIGHT");
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Necrosis_BuffCast(43);
-			</OnClick>
-		</Scripts>
-		<NormalTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-01"/>
-		<HighlightTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-02"/>
-	</Button>
-	<Button name="NecrosisBuffMenu9" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
-		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(NecrosisBuffMenu9);
 			</OnLoad>
 			<OnEnter>
 				Necrosis_BuildTooltip(this, "Banish", "ANCHOR_RIGHT");

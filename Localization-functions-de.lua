@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 -- 
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 28.06.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ if ( GetLocale() == "deDE" ) then
 NECROSIS_UNIT_WARLOCK = "Hexenmeister";
 
 NECROSIS_ANTI_FEAR_SPELL = {
-	-- Buffs die temporäre Immunität gegenüber Furcht geben
+	-- Buffs die temporï¿½re Immunitï¿½t gegenï¿½ber Furcht geben
 	["Buff"] = {
 		"Furchtzauberschutz",		-- Dwarf priest racial trait
 		"Wille der Verlassenen",	-- Forsaken racial trait
@@ -128,8 +128,6 @@ NECROSIS_SPELL_TABLE = {
 		Name = "D\195\164monenhaut",			Length = 0,	Type = 0},
 	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Ritual der Beschw\195\182rung",		Length = 0,	Type = 0},
-	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Seelenverbindung",			Length = 0,	Type = 0},
 	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "D\195\164monen sp\195\188ren",		Length = 0,	Type = 0},
 	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
@@ -148,7 +146,7 @@ NECROSIS_SPELL_TABLE = {
 -- Type 1 = Timer permanent principal
 -- Type 2 = Timer permanent
 -- Type 3 = Timer de cooldown
--- Type 4 = Timer de malédiction
+-- Type 4 = Timer de malï¿½diction
 -- Type 5 = Timer de combat
 
 NECROSIS_ITEM = {

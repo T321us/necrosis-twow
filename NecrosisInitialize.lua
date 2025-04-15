@@ -181,7 +181,7 @@ function Necrosis_Initialize()
 		NecrosisButton:SetScale(NecrosisConfig.NecrosisButtonScale/100);
 		NecrosisShadowTranceButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
 		NecrosisAntiFearButton:SetScale(NecrosisConfig.ShadowTranceScale/100);
-		NecrosisBuffMenu9:SetScale(NecrosisConfig.BanishScale/100);
+		NecrosisBuffMenu8:SetScale(NecrosisConfig.BanishScale/100);
 
 		-- On d�finit l'affichage des Timers � gauche ou � droite du bouton
 		NecrosisListSpells:ClearAllPoints();

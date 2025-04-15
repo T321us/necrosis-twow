@@ -102,9 +102,6 @@ function Necrosis_Localization_Dialog_En()
 		["TP"] = {
 			Label = "|c00FFFFFFRitual of Summoning|r"
 		},
-		["SoulLink"] = {
-			Label = "|c00FFFFFFSoul Link|r"
-		},
 		["ShadowProtection"] = {
 			Label = "|c00FFFFFFShadow Ward|r"
 		},
