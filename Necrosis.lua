@@ -162,6 +162,9 @@ local FirestoneMode = 1;
 local FelstonestoneOnHand = false;
 local FelstonestoneLocation = {nil,nil};
 local FelstonestoneMode = 1;
+local WrathstonestoneOnHand = false;
+local WrathstonestoneLocation = {nil,nil};
+local WrathstonestoneMode = 1;
 local SpellstoneOnHand = false;
 local SpellstoneLocation = {nil,nil};
 local SpellstoneMode = 1;
@@ -1021,6 +1024,7 @@ function Necrosis_BuildTooltip(button, type, anchor)
 		if string.find(rightHand, NECROSIS_ITEM.Firestone) then FirestoneOnHand = true; end
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Firestone..NecrosisTooltipData[type].Stone[FirestoneOnHand]);
 		GameTooltip:AddLine(NecrosisTooltipData.Main.Felstone..NecrosisTooltipData[type].Stone[FelstoneOnHand]);
+		GameTooltip:AddLine(NecrosisTooltipData.Main.Wrathstone..NecrosisTooltipData[type].Stone[WrathstoneOnHand]);
 		-- Affichage du nom du d�mon, ou s'il est asservi, ou "Aucun" si aucun d�mon n'est pr�sent
 		if (DemonType) then
 			GameTooltip:AddLine(NecrosisTooltipData.Main.CurrentDemon..DemonType);
@@ -1086,6 +1090,12 @@ function Necrosis_BuildTooltip(button, type, anchor)
 				GameTooltip:AddLine(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[5]].Mana.." Mana");
 			end
 			GameTooltip:AddLine(NecrosisTooltipData[type].Text[FelstoneMode]);
+		elseif (type == "Wrathstone") then
+			-- Idem, mais sans le cooldown
+			if WrathstoneMode == 1 then
+				GameTooltip:AddLine(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[6]].Mana.." Mana");
+			end
+			GameTooltip:AddLine(NecrosisTooltipData[type].Text[WrathstoneMode]);
 		end
 	-- ..... pour le bouton des Timers
 	elseif (type == "SpellTimer") then
@@ -1392,6 +1402,15 @@ function Necrosis_UpdateIcons()
 
 	-- Affichage de l'icone li�e au mode
 	NecrosisFelstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FelstoneButton-0"..FelstoneMode);
+
+	if (WrathstoneOnHand) then
+		WrathstoneMode = 2;
+	else
+		WrathstoneMode = 1;
+	end
+
+	-- Affichage de l'icone li�e au mode
+	NecrosisWrathstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\WrathstoneButton-0"..WrathstoneMode);
 
 
 	-- Bouton des d�mons
@@ -1718,6 +1737,7 @@ function Necrosis_BagExplore()
 	HealthstoneOnHand = false;
 	FirestoneOnHand = false;
 	FelstoneOnHand = false;
+	WrathstoneOnHand = false;
 	SpellstoneOnHand = false;
 	HearthstoneOnHand = false;
 	ItemOnHand = false;
@@ -1769,6 +1789,11 @@ function Necrosis_BagExplore()
 				if string.find(itemName, NECROSIS_ITEM.Felstone) then
 					FelstoneOnHand = true;
 					FelstoneLocation = {container,slot};
+				end
+				-- Wrathstone
+				if string.find(itemName, NECROSIS_ITEM.Wrathstone) then
+					WrathstoneOnHand = true;
+					WrathstoneLocation = {container,slot};
 				end
 				-- et enfin la pierre de foyer
 				if string.find(itemName, NECROSIS_ITEM.Hearthstone) then
@@ -1914,6 +1939,7 @@ function Necrosis_ButtonSetup()
 		HideUIPanel(NecrosisHealthstoneButton);
 		HideUIPanel(NecrosisSoulstoneButton);
 		HideUIPanel(NecrosisFelstoneButton);
+		HideUIPanel(NecrosisWrathstoneButton);
 		if (NecrosisConfig.StonePosition[1]) and StoneIDInSpellTable[4] ~= 0 then
 			ShowUIPanel(NecrosisFirestoneButton);
 		end
@@ -1941,6 +1967,9 @@ function Necrosis_ButtonSetup()
 		if (NecrosisConfig.StonePosition[9]) and StoneIDInSpellTable[5] ~= 0 then
 			ShowUIPanel(NecrosisFelstoneButton);
 		end
+		if (NecrosisConfig.StonePosition[10]) and StoneIDInSpellTable[6] ~= 0 then
+			ShowUIPanel(NecrosisWrathstoneButton);
+		end
 	end
 end
 
@@ -1949,8 +1978,8 @@ end
 -- Ma fonction pr�f�r�e ! Elle fait la liste des sorts connus par le d�mo, et les classe par rang.
 -- Pour les pierres, elle s�lectionne le plus haut rang connu
 function Necrosis_SpellSetup()
-	local StoneType = {NECROSIS_ITEM.Soulstone, NECROSIS_ITEM.Healthstone, NECROSIS_ITEM.Spellstone, NECROSIS_ITEM.Firestone, NECROSIS_ITEM.Felstone};
-	local StoneMaxRank = {0, 0, 0, 0, 0};
+	local StoneType = {NECROSIS_ITEM.Soulstone, NECROSIS_ITEM.Healthstone, NECROSIS_ITEM.Spellstone, NECROSIS_ITEM.Firestone, NECROSIS_ITEM.Felstone, NECROSIS_ITEM.Wrathstone};
+	local StoneMaxRank = {0, 0, 0, 0, 0, 0};
 
 	local CurrentStone = {
 		ID = {},
@@ -2341,6 +2370,20 @@ function Necrosis_UseItem(type,button)
 				UseContainerItem(FelstoneLocation[1], FelstoneLocation[2]);
 			end
 		end
+	elseif (type == "Wrathstone") then
+		if (WrathstoneMode == 1) then
+			if StoneIDInSpellTable[6] ~= 0 then
+				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[6]].ID, "spell");
+			else
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoWrathStoneSpell, "USER");
+			end
+		elseif (WrathstoneMode == 2) then
+			if (PlayerCombat) then
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.WrathStoneSpellInCombat, "USER");
+			else
+				UseContainerItem(WrathstoneLocation[1], WrathstoneLocation[2]);
+			end
+		end
 	-- Si on clic sur le bouton de monture
 	elseif (type == "Mount") then
 		-- Soit c'est la monture �pique
@@ -2433,50 +2476,56 @@ function Necrosis_UpdateButtonsScale()
 		HideUIPanel(NecrosisHealthstoneButton);
 		HideUIPanel(NecrosisSoulstoneButton);
 		HideUIPanel(NecrosisFelstoneButton);
+		HideUIPanel(NecrosisWrathstoneButton);
 		local indexScale = -36;
-		for index=1, 9, 1 do
+		for index=1, 10, 1 do
 			if NecrosisConfig.StonePosition[index] then
-				if index == 1 and StoneIDInSpellTable[5] ~= 0 then
+				if index == 1 and StoneIDInSpellTable[6] ~= 0 then
+					NecrosisWrathstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
+					ShowUIPanel(NecrosisWrathstoneButton);
+					indexScale = indexScale + 36;
+				end
+				if index == 2 and StoneIDInSpellTable[5] ~= 0 then
 					NecrosisFelstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisFelstoneButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 2 and StoneIDInSpellTable[4] ~= 0 then
+				if index == 3 and StoneIDInSpellTable[4] ~= 0 then
 					NecrosisFirestoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisFirestoneButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 3 and StoneIDInSpellTable[3] ~= 0 then
+				if index == 4 and StoneIDInSpellTable[3] ~= 0 then
 					NecrosisSpellstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisSpellstoneButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 4 and StoneIDInSpellTable[2] ~= 0 then
+				if index == 5 and StoneIDInSpellTable[2] ~= 0 then
 					NecrosisHealthstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisHealthstoneButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 5 and StoneIDInSpellTable[1] ~= 0 then
+				if index == 6 and StoneIDInSpellTable[1] ~= 0 then
 					NecrosisSoulstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisSoulstoneButton);
 					indexScale = indexScale + 36;
 				end	
-				if index == 6 and BuffMenuCreate ~= {} then
+				if index == 7 and BuffMenuCreate ~= {} then
 					NecrosisBuffMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisBuffMenuButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 7 and MountAvailable then
+				if index == 8 and MountAvailable then
 					NecrosisMountButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisMountButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 8 and PetMenuCreate ~= {} then
+				if index == 9 and PetMenuCreate ~= {} then
 					NecrosisPetMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisPetMenuButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 9 and CurseMenuCreate ~= {} then
+				if index == 10 and CurseMenuCreate ~= {} then
 					NecrosisCurseMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisCurseMenuButton);
 					indexScale = indexScale + 36;
@@ -2499,6 +2548,7 @@ function Necrosis_ClearAllPoints()
 	NecrosisBuffMenuButton:ClearAllPoints();
 	NecrosisCurseMenuButton:ClearAllPoints();
 	NecrosisFelstoneButton:ClearAllPoints();
+	NecrosisWrathstoneButton:ClearAllPoints();
 end
 
 -- Fonction (XML) pour �tendre la propri�t� NoDrag() du bouton principal de Necrosis sur tout ses boutons
@@ -2511,7 +2561,7 @@ function Necrosis_NoDrag()
 	NecrosisPetMenuButton:RegisterForDrag("");
 	NecrosisBuffMenuButton:RegisterForDrag("");
 	NecrosisCurseMenuButton:RegisterForDrag("");
-	NecrosisFelstoneButton:RegisterForDrag("");
+	NecrosisWrathstoneButton:RegisterForDrag("");
 end
 
 -- Fonction (XML) inverse de celle du dessus
@@ -2524,7 +2574,7 @@ function Necrosis_Drag()
 	NecrosisPetMenuButton:RegisterForDrag("LeftButton");
 	NecrosisBuffMenuButton:RegisterForDrag("LeftButton");
 	NecrosisCurseMenuButton:RegisterForDrag("LeftButton");
-	NecrosisFelstoneButton:RegisterForDrag("LeftButton");
+	NecrosisWrathstoneButton:RegisterForDrag("LeftButton");
 end
 
 -- Ouverture du menu des buffs

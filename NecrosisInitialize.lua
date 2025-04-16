@@ -55,6 +55,7 @@ function Necrosis_Initialize()
 		HideUIPanel(NecrosisAntiFearButton);
 		HideUIPanel(NecrosisShadowTranceButton);
 		HideUIPanel(NecrosisFelstoneButton);
+		HideUIPanel(NecrosisWrathstoneButton);
 	else
 		-- On charge (ou on cr�e) la configuration pour le joueur et on l'affiche sur la console
 		if NecrosisConfig == nil or NecrosisConfig.Version ~= Default_NecrosisConfig.Version then
@@ -96,15 +97,16 @@ function Necrosis_Initialize()
 		if (NecrosisConfig.ShowSpellTimers) then NecrosisShowSpellTimers_Button:SetChecked(1); end
 		if (NecrosisConfig.AntiFearAlert) then NecrosisAntiFearAlert_Button:SetChecked(1); end
 		if (NecrosisConfig.NecrosisLockServ) then NecrosisIconsLock_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[1]) then NecrosisShowFelstone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[2]) then NecrosisShowFirestone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[3]) then NecrosisShowSpellstone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[4]) then NecrosisShowHealthStone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[5]) then NecrosisShowSoulstone_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[6]) then NecrosisShowBuffMenu_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[7]) then NecrosisShowMount_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[8]) then NecrosisShowPetMenu_Button:SetChecked(1); end
-		if (NecrosisConfig.StonePosition[9]) then NecrosisShowCurseMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[1]) then NecrosisShowWrathstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[2]) then NecrosisShowFelstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[3]) then NecrosisShowFirestone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[4]) then NecrosisShowSpellstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[5]) then NecrosisShowHealthStone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[6]) then NecrosisShowSoulstone_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[7]) then NecrosisShowBuffMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[8]) then NecrosisShowMount_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[9]) then NecrosisShowPetMenu_Button:SetChecked(1); end
+		if (NecrosisConfig.StonePosition[10]) then NecrosisShowCurseMenu_Button:SetChecked(1); end
 		if (NecrosisConfig.NecrosisToolTip) then NecrosisShowTooltips_Button:SetChecked(1); end
 		if (NecrosisConfig.Sound) then NecrosisSound_Button:SetChecked(1); end
 		if (NecrosisConfig.ShowCount) then NecrosisShowCount_Button:SetChecked(1); end
@@ -256,6 +258,7 @@ function Necrosis_LanguageInitialize()
 		
 	NecrosisShowFirestone_Option:SetText(NECROSIS_CONFIGURATION.Show.Firestone);
 	NecrosisShowFelstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Felstone);
+	NecrosisShowWrathstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Wrathstone);
 	NecrosisShowSpellstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Spellstone);
 	NecrosisShowHealthStone_Option:SetText(NECROSIS_CONFIGURATION.Show.Healthstone);
 	NecrosisShowSoulstone_Option:SetText(NECROSIS_CONFIGURATION.Show.Soulstone);

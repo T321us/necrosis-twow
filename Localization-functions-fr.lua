@@ -154,6 +154,8 @@ NECROSIS_ITEM = {
 	["Healthstone"] = "Pierre de soins",
 	["Spellstone"] = "Pierre de sort",
 	["Firestone"] = "Pierre de feu",
+	["Felstone"] = "Gangrepierre",
+	["Wrathstone"] = "Pierre de col\195\169re",
 	["Offhand"] = "Tenu en main gauche",
 	["Twohand"] = "Deux mains",
 	["InfernalStone"] = "Pierre infernale",
@@ -180,7 +182,9 @@ NECROSIS_CREATE = {
 	[1] = "Cr\195\169ation de Pierre d'\195\162me",
 	[2] = "Cr\195\169ation de Pierre de soins",
 	[3] = "Cr\195\169ation de Pierre de sort",
-	[4] = "Cr\195\169ation de Pierre de feu"
+	[4] = "Cr\195\169ation de Pierre de feu",
+	[5] = "Cr\195\169ation de Gangrepierre",
+	[6] = "Cr\195\169ation de Pierre de col\195\169re"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

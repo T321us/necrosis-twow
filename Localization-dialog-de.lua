@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 -- 
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 11.05.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -59,11 +59,19 @@ function Necrosis_Localization_Dialog_De()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFZauberstein|r",
-			Text = {"Erstelle","Im Inventar","In der Hand gehalten"}
+			Text = {"Erstelle","Verwende"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Feuerstein|r",
-			Text = {"Erstelle","Im Inventar","In der Hand gehalten"}
+			Text = {"Erstelle","Verwende"}
+		},
+		["Felstone"] = {
+			Label = "|c00FF4444Teufelsstein|r",
+			Text = {"Erstelle","Verwende"}
+		},
+		["Wrathstone"] = {
+			Label = "|c00FF4444Zornstein|r",
+			Text = {"Erstelle","Verwende"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFSpruchdauer|r",
@@ -166,7 +174,7 @@ function Necrosis_Localization_Dialog_De()
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\164monen sp\195\188ren|r"
 		},
-		["AmplifyCooldown"] = "Mit der rechten Taste klicken f\195\188r verstärken",
+		["AmplifyCooldown"] = "Mit der rechten Taste klicken f\195\188r verstï¿½rken",
 		["DominationCooldown"] = "Mit der rechten Taste klicken f\195\188r eine schnelle Beschw\195\182rung",
 		["LastSpell"] = "Mittlere Taste klicken f\195\188r ",
 	};

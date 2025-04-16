@@ -46,6 +46,7 @@ function Necrosis_Localization_Dialog_En()
 			["Spellstone"] = "Spellstone : ",
 			["Firestone"] = "Firestone : ",
 			["Felstone"] = "Felstone : ",
+			["Wrathstone"] = "Wrathstone : ",
 			["CurrentDemon"] = "Demon : ",
 			["EnslavedDemon"] = "Demon : Enslaved",
 			["NoCurrentDemon"] = "Demon : None",
@@ -68,6 +69,10 @@ function Necrosis_Localization_Dialog_En()
 		},
 		["Felstone"] = {
 			Label = "|c00FF4444Felstone|r",
+			Text = {"Create","Use"}
+		},
+		["Wrathstone"] = {
+			Label = "|c00FF4444Wrathstone|r",
 			Text = {"Create","Use"}
 		},
 		["SpellTimer"] = {
@@ -198,6 +203,8 @@ function Necrosis_Localization_Dialog_En()
 			["NoFireStoneSpell"] = "You do not have any Firestone creation spell",
 			["FelStoneSpellInCombat"] = "You cannot use a Felstone in combat",
 			["NoFelStoneSpell"] = "You do not have any Felstone creation spell",
+			["WrathStoneSpellInCombat"] = "You cannot use a Wrathstone in combat",
+			["NoWrathStoneSpell"] = "You do not have any Wrathstone creation spell",
 			["NoSpellStoneSpell"] = "You do not have any Spellstone creation spell",
 			["NoHealthStoneSpell"] = "You do not have any Healthstone creation spell",
 			["NoSoulStoneSpell"] = "You do not have any Soulstone creation spell",
@@ -292,6 +299,7 @@ function Necrosis_Localization_Dialog_En()
 		["Show"] = {
 			["Firestone"] = "Show Firestone button",
 			["Felstone"] = "Show Felstone button",
+			["Wrathstone"] = "Show Wrathstone button",
 			["Spellstone"] = "Show Spellstone button",
 			["Healthstone"] = "Show Healthstone button",
 			["Soulstone"] = "Show Soulstone button",

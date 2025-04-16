@@ -155,6 +155,8 @@ NECROSIS_ITEM = {
 	["Healthstone"] = "Gesundheitsstein",
 	["Spellstone"] = "Zauberstein",
 	["Firestone"] = "Feuerstein",
+	["Felstone"] = "Teufelsstein",
+	["Wrathstone"] = "Zornstein",
 	["Offhand"] = "Schildhand",
 	["Twohand"] = "Zweihand",
 	["InfernalStone"] = "H\195\182llenstein",
@@ -181,7 +183,9 @@ NECROSIS_CREATE = {
 	[1] = "Seelenstein herstellen",
 	[2] = "Gesundheitsstein herstellen",
 	[3] = "Zauberstein herstellen",
-	[4] = "Feuerstein herstellen"
+	[4] = "Feuerstein herstellen",
+	[5] = "Teufelsstein herstellen",
+	[6] = "Zornstein herstellen"
 };
 
 NECROSIS_PET_LOCAL_NAME = {

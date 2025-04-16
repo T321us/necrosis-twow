@@ -28,6 +28,7 @@ BINDING_NAME_HEALTHSTONE = "Pierre de soins / Healthstone";
 BINDING_NAME_SPELLSTONE = "Pierre de sort / Spellstone";
 BINDING_NAME_FIRESTONE = "Pierre de feu / Firestone";
 BINDING_NAME_FELSTONE = "Gangrepierre / Felstone";
+BINDING_NAME_WRATHSTONE = "Pierre de colère / Wrathstone";
 BINDING_NAME_STEED = "Monture / Steed";
 BINDING_NAME_WARD = "Gardien de l'ombre / Shadow Ward";
 BINDING_NAME_BANISH = "Bannir / Ban";

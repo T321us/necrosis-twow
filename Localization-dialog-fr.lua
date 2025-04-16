@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------
 -- Necrosis LdC
 --
--- Créateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Implémentation de base (FR) : Tilienna Thorondor
+-- Crï¿½ateur initial (US) : Infernal (http://www.revolvus.com/games/interface/necrosis/)
+-- Implï¿½mentation de base (FR) : Tilienna Thorondor
 -- Reprise du projet : Lomig & Nyx des Larmes de Cenarius, Kael'Thas
 -- 
--- Skins et voix Françaises : Eliah, Ner'zhul
+-- Skins et voix Franï¿½aises : Eliah, Ner'zhul
 -- Version Allemande par Arne Meier et Halisstra, Lothar
--- Remerciements spéciaux pour Sadyre (JoL)
+-- Remerciements spï¿½ciaux pour Sadyre (JoL)
 -- Version 28.06.2006-1
 ------------------------------------------------------------------------------------------------------
 
@@ -59,11 +59,19 @@ function Necrosis_Localization_Dialog_Fr()
 		},
 		["Spellstone"] = {
 			Label = "|c0099CCFFPierre de sort|r",
-			Text = {"Cr\195\169ation","En inventaire","Tenue en main"}
+			Text = {"Cr\195\169ation","Utilisation"}
 		},
 		["Firestone"] = {
 			Label = "|c00FF4444Pierre de feu|r",
-			Text = {"Cr\195\169ation","En inventaire","Tenue en main"}
+			Text = {"Cr\195\169ation","Utilisation"}
+		},
+		["Felstone"] = {
+			Label = "|c00FF4444Gangrepierre|r",
+			Text = {"Cr\195\169ation","Utilisation"}
+		},
+		["Wrathstone"] = {
+			Label = "|c00FF4444Pierre de col\195\169re|r",
+			Text = {"Cr\195\169ation","Utilisation"}
 		},
 		["SpellTimer"] = {
 			Label = "|c00FFFFFFDur\195\169e des sorts|r",
@@ -218,8 +226,8 @@ function Necrosis_Localization_Dialog_Fr()
 			["UserConfig"] = "<lightYellow>Configuration charg\195\169e"
 		},
 		["Help"] = {
-			"/necro recall -- Centre Necrosis and tous les boutons au centre de l'écran",
-			"/necro sm -- Remplace les messages de pierre d'\195\162me et d'invocation par des versions courtes spéciales raid"
+			"/necro recall -- Centre Necrosis and tous les boutons au centre de l'ï¿½cran",
+			"/necro sm -- Remplace les messages de pierre d'\195\162me et d'invocation par des versions courtes spï¿½ciales raid"
 		},
 		["EquipMessage"] = "Equipe ",
 		["SwitchMessage"] = " \195\160 la place de ",
