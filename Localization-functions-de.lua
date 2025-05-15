@@ -69,7 +69,7 @@ NECROSIS_SPELL_TABLE = {
 	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Schattenblitz",				Length = 0,	Type = 0},
 	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Inferno",				Length = 3600,	Type = 3},
+		Name = "Inferno",				Length = 300,	Type = 3},
 	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Verbannen",				Length = 30,	Type = 2},
 	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
