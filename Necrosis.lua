@@ -1895,7 +1895,7 @@ function Necrosis_FindSlot(shardIndex, shardSlot)
 		Necrosis_MoneyToggle();
  		NecrosisTooltip:SetBagItem(NecrosisConfig.SoulshardContainer, slot);
  		local itemInfo = tostring(NecrosisTooltipTextLeft1:GetText());
-		if string.find(itemInfo, NECROSIS_ITEM.Soulshard) == nil then
+		if (string.find(itemInfo, NECROSIS_ITEM.Soulshard) == nil and string.find(itemInfo, NECROSIS_ITEM.InfernalStone) == nil and string.find(itemInfo, NECROSIS_ITEM.DemoniacStone) == nil) then
 			PickupContainerItem(shardIndex, shardSlot);
 			PickupContainerItem(NecrosisConfig.SoulshardContainer, slot);
 			SoulshardSlot[SoulshardSlotID] = slot;
