@@ -171,6 +171,9 @@ function Necrosis_Localization_Dialog_De()
 		["Curse"] = {
 			Label = "|c00FFFFFFFluch Men\195\188|r\nRechtsklick um das Men\195\188 zu \195\182ffnen"
 		},
+		["Stone"] = {
+			Label = "|c00FFFFFFSteine Men\195\188|r\nRechtsklick um das Men\195\188 zu \195\182ffnen"
+		},
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\164monen sp\195\188ren|r"
 		},
@@ -278,6 +281,7 @@ function Necrosis_Localization_Dialog_De()
 		["BagSelect"] = "W\195\164hle die Seelensplitter-Tasche",
 		["BuffMenu"] = "Setze das Spruch Men\195\188 nach links",
 		["CurseMenu"] = "Setze das Fluch Men\195\188 nach links",
+		["StoneMenu"] = "Setze das Stein Men\195\188 nach links",
 		["PetMenu"] = "Setze das Diener Men\195\188 nach links",
 		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Knopfes",		
 		["ShowCount"] = "Zeige die Anzahl der Seelensplitter in Necrosis",
@@ -297,6 +301,7 @@ function Necrosis_Localization_Dialog_De()
 			["Spellstone"] = "Zeige den Zauberstein Button",
 			["Healthstone"] = "Zeige den Gesundheitsstein Button",
 			["Soulstone"] = "Zeige den Seelenstein Button",
+			["Stone"] = "Zeige den Stein Button",
 			["Steed"] = "Zeige den Mount Button",
 			["Buff"] = "Zeige den Spruch Men\195\188 Button",
 			["Demon"] = "Zeige den D\195\164monen Men\195\188 Button",

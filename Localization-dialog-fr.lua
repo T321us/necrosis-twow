@@ -171,6 +171,9 @@ function Necrosis_Localization_Dialog_Fr()
 		["Curse"] = {
 			Label = "|c00FFFFFFMenu des mal\195\169dictions|r\nClic droit pour laisser ouvert"
 		},
+		["Stone"] = {
+			Label = "|c00FFFFFFMenu des pierres|r\nClic droit pour laisser ouvert"
+		},
 		["Radar"] = {
 			Label = "|c00FFFFFFD\195\169tection des d\195\169mons|r"
 		},
@@ -277,6 +280,7 @@ function Necrosis_Localization_Dialog_Fr()
 		["BuffMenu"] = "Afficher le menu des buffs vers la gauche",
 		["PetMenu"] = "Afficher le menu des d\195\169mons vers la gauche",
 		["CurseMenu"] = "Afficher le menu des mal\195\169dictions vers la gauche",
+		["StoneMenu"] = "Afficher le menu des Pierre vers la gauche",
 		["STimerLeft"] = "Afficher les timers sur la gauche du bouton",
 		["ShowCount"] = "Afficher le compteur de fragments",
 		["CountType"] = "Type de compteur",
@@ -295,6 +299,7 @@ function Necrosis_Localization_Dialog_Fr()
 			["Spellstone"] = "Afficher le bouton des Pierres de sort",
 			["Healthstone"] = "Afficher le bouton des Pierres de soin",
 			["Soulstone"] = "Afficher le bouton des Pierres d'\195\162me",
+			["Stone"] = "Afficher le bouton Pierre",
 			["Steed"] = "Afficher le bouton de la Monture",
 			["Buff"] = "Affiche le bouton des Buffs",
 			["Curse"] = "Affiche le bouton des Mal\195\169dictions",

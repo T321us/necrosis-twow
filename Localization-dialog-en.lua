@@ -170,6 +170,9 @@ function Necrosis_Localization_Dialog_En()
 		["Curse"] = {
 			Label = "|c00FFFFFFCurse Menu|r\nRight click to keep the menu open"
 		},
+		["Stone"] = {
+			Label = "|c00FFFFFFStone Menu|r\nRight click to keep the menu open"
+		},
 		["Radar"] = {
 			Label = "|c00FFFFFFSense Demons|r"
 		},
@@ -283,6 +286,7 @@ function Necrosis_Localization_Dialog_En()
 		["BuffMenu"] = "Put buff menu on the left",
 		["PetMenu"] = "Put pet menu on the left",
 		["CurseMenu"] = "Put curse menu on the left",
+		["StoneMenu"] = "Put stone menu on the left",
 		["STimerLeft"] = "Show timers on the left side of the button",
 		["ShowCount"] = "Show the Shard count in Necrosis",
 		["CountType"] = "Stone type counted",
@@ -303,6 +307,7 @@ function Necrosis_Localization_Dialog_En()
 			["Spellstone"] = "Show Spellstone button",
 			["Healthstone"] = "Show Healthstone button",
 			["Soulstone"] = "Show Soulstone button",
+			["Stone"] = "Show Stone menu button",
 			["Steed"] = "Show Steed button",
 			["Buff"] = "Show Spell menu button",
 			["Curse"] = "Show Curse menu button",

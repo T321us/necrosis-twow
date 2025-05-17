@@ -29,6 +29,7 @@ Default_NecrosisConfig = {
 	PetMenuPos = 34;
 	BuffMenuPos = 34;
 	CurseMenuPos = 34;
+	StoneMenuPos = 34;
 	ChatMsg = true;
 	ChatType = true;
 	NecrosisLanguage = GetLocale();
@@ -110,6 +111,11 @@ local AlphaCurseMenu = 1;
 local AlphaCurseVar = 0;
 local CurseVisible = false;
 
+-- Menus: allows the gradual disappearance of the course menu (transparency)
+local AlphaStoneMenu = 1;
+local AlphaStoneVar = 0;
+local StoneVisible = false;
+
 -- Menus : Permet de recaster le dernier cast du menu en cliquant milieu sur celui-ci
 local LastDemon = 0;
 local LastBuff = 0;
@@ -119,6 +125,7 @@ local LastCurseClick = "LeftButton";
 -- Liste des boutons disponible pour le d�moniste dans chaque menu
 local PetMenuCreate = {};
 local BuffMenuCreate = {};
+local StoneMenuCreate = {};
 local CurseMenuCreate = {};
 
 -- Variables utilis�es pour la gestion des montures
@@ -159,12 +166,12 @@ local HealthstoneMode = 1;
 local FirestoneOnHand = false;
 local FirestoneLocation = {nil,nil};
 local FirestoneMode = 1;
-local FelstonestoneOnHand = false;
-local FelstonestoneLocation = {nil,nil};
-local FelstonestoneMode = 1;
-local WrathstonestoneOnHand = false;
-local WrathstonestoneLocation = {nil,nil};
-local WrathstonestoneMode = 1;
+local FelStonetoneOnHand = false;
+local FelStonetoneLocation = {nil,nil};
+local FelStonetoneMode = 1;
+local WrathStonetoneOnHand = false;
+local WrathStonetoneLocation = {nil,nil};
+local WrathStonetoneMode = 1;
 local SpellstoneOnHand = false;
 local SpellstoneLocation = {nil,nil};
 local SpellstoneMode = 1;
@@ -349,6 +356,20 @@ function Necrosis_OnUpdate()
 		end
 		if AlphaCurseMenu <= 0 then
 			Necrosis_CurseMenu();
+		end
+	end
+
+	if StoneShow then
+		if GetTime() >= AlphaStoneVar and AlphaStoneMenu > 0 and (not StoneVisible) then
+			AlphaStoneVar = GetTime() + 0.1;
+			NecrosisStoneMenu1:SetAlpha(AlphaStoneMenu);
+			NecrosisStoneMenu2:SetAlpha(AlphaStoneMenu);
+			NecrosisStoneMenu3:SetAlpha(AlphaStoneMenu);
+			NecrosisStoneMenu4:SetAlpha(AlphaStoneMenu);
+			AlphaStoneMenu = AlphaStoneMenu - 0.1;
+		end
+		if AlphaStoneMenu <= 0 then
+			Necrosis_StoneMenu();
 		end
 	end
 	
@@ -1372,7 +1393,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone li�e au mode
-	NecrosisSpellstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..SpellstoneMode);
+	NecrosisStoneMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\SpellstoneButton-0"..SpellstoneMode);
 
 	-- Pierre de feu
 	-----------------------------------------------
@@ -1389,7 +1410,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone li�e au mode
-	NecrosisFirestoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode);
+	NecrosisStoneMenu2:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FirestoneButton-0"..FirestoneMode);
 
 	-- Felstone
 	-----------------------------------------------
@@ -1401,7 +1422,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone li�e au mode
-	NecrosisFelstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FelstoneButton-0"..FelstoneMode);
+	NecrosisStoneMenu3:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FelstoneButton-0"..FelstoneMode);
 
 	if (WrathstoneOnHand) then
 		WrathstoneMode = 2;
@@ -1410,7 +1431,7 @@ function Necrosis_UpdateIcons()
 	end
 
 	-- Affichage de l'icone li�e au mode
-	NecrosisWrathstoneButton:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\WrathstoneButton-0"..WrathstoneMode);
+	NecrosisStoneMenu4:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\WrathstoneButton-0"..WrathstoneMode);
 
 
 	-- Bouton des d�mons
@@ -1697,6 +1718,24 @@ function Necrosis_UpdateIcons()
 		end
 	end
 
+	-- Stones
+	-----------------------------------------------
+	-- Spellstone
+	if NECROSIS_ITEM.Spellstone then
+		NecrosisStoneMenu1:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Spellstone-01");
+	end
+	-- Firestone
+	if NECROSIS_ITEM.Firestone then
+		NecrosisStoneMenu2:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Firestone-01");
+	end
+	-- Felstone
+	if NECROSIS_ITEM.Felstone then
+		NecrosisStoneMenu3:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\FelStone-01");
+	end
+	-- Wrathstone
+	if NECROSIS_ITEM.Wrathstone then
+		NecrosisStoneMenu4:SetNormalTexture("Interface\\AddOns\\Necrosis\\UI\\Wrathstone-01");
+	end
 
 	-- Bouton des Timers
 	-----------------------------------------------
@@ -1934,41 +1973,29 @@ function Necrosis_ButtonSetup()
 		HideUIPanel(NecrosisBuffMenuButton);
 		HideUIPanel(NecrosisCurseMenuButton);
 		HideUIPanel(NecrosisMountButton);
-		HideUIPanel(NecrosisFirestoneButton);
-		HideUIPanel(NecrosisSpellstoneButton);
 		HideUIPanel(NecrosisHealthstoneButton);
 		HideUIPanel(NecrosisSoulstoneButton);
-		HideUIPanel(NecrosisFelstoneButton);
-		HideUIPanel(NecrosisWrathstoneButton);
-		if (NecrosisConfig.StonePosition[1]) and StoneIDInSpellTable[4] ~= 0 then
-			ShowUIPanel(NecrosisFirestoneButton);
-		end
-		if (NecrosisConfig.StonePosition[2]) and StoneIDInSpellTable[3] ~= 0 then
-			ShowUIPanel(NecrosisSpellstoneButton);
-		end
-		if (NecrosisConfig.StonePosition[3]) and StoneIDInSpellTable[2] ~= 0 then
+		HideUIPanel(NecrosisStoneMenuButton);
+		if (NecrosisConfig.StonePosition[1]) and StoneIDInSpellTable[2] ~= 0 then
 			ShowUIPanel(NecrosisHealthstoneButton);
 		end
-		if (NecrosisConfig.StonePosition[4]) and StoneIDInSpellTable[1] ~= 0 then
+		if (NecrosisConfig.StonePosition[2]) and StoneIDInSpellTable[1] ~= 0 then
 			ShowUIPanel(NecrosisSoulstoneButton);
 		end
-		if (NecrosisConfig.StonePosition[5]) and BuffMenuCreate ~= {} then
+		if (NecrosisConfig.StonePosition[3]) and StoneMenuCreate ~= {} then
+			ShowUIPanel(NecrosisStoneMenuButton);
+		end
+		if (NecrosisConfig.StonePosition[4]) and BuffMenuCreate ~= {} then
 			ShowUIPanel(NecrosisBuffMenuButton);
 		end
-		if (NecrosisConfig.StonePosition[6]) and MountAvailable then
+		if (NecrosisConfig.StonePosition[5]) and MountAvailable then
 			ShowUIPanel(NecrosisMountButton);
 		end
-		if (NecrosisConfig.StonePosition[7]) and PetMenuCreate ~= {} then
+		if (NecrosisConfig.StonePosition[6]) and PetMenuCreate ~= {} then
 			ShowUIPanel(NecrosisPetMenuButton);
 		end
-		if (NecrosisConfig.StonePosition[8]) and CurseMenuCreate ~= {} then
+		if (NecrosisConfig.StonePosition[7]) and CurseMenuCreate ~= {} then
 			ShowUIPanel(NecrosisCurseMenuButton);
-		end
-		if (NecrosisConfig.StonePosition[9]) and StoneIDInSpellTable[5] ~= 0 then
-			ShowUIPanel(NecrosisFelstoneButton);
-		end
-		if (NecrosisConfig.StonePosition[10]) and StoneIDInSpellTable[6] ~= 0 then
-			ShowUIPanel(NecrosisWrathstoneButton);
 		end
 	end
 end
@@ -2049,11 +2076,11 @@ function Necrosis_SpellSetup()
 				and StoneMaxRank[stoneID] ~= table.getn(NECROSIS_STONE_RANK)
 				then
 				-- R�cup�ration de la fin du nom de la pierre, contenant son rang
-				local stoneSuffix = string.sub(spellName, string.len(NECROSIS_CREATE[stoneID]) + 1);
+				local Stoneuffix = string.sub(spellName, string.len(NECROSIS_CREATE[stoneID]) + 1);
 				-- Reste � trouver la correspondance de son rang
 				for rankID=1, table.getn(NECROSIS_STONE_RANK), 1 do
 					-- Si la fin du nom de la pierre correspond � une taille de pierre, on note le rang !
-					if string.lower(stoneSuffix) == string.lower(NECROSIS_STONE_RANK[rankID]) then 
+					if string.lower(Stoneuffix) == string.lower(NECROSIS_STONE_RANK[rankID]) then 
 						-- On a une pierre, on a son rang, reste � v�rifier si c'est la plus puissante,
 						-- et si oui, l'enregistrer
 						if rankID > StoneMaxRank[stoneID] then
@@ -2272,7 +2299,7 @@ function Necrosis_UseItem(type,button)
 				if StoneIDInSpellTable[1] ~= 0 then
 					CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[1]].ID, "spell");
 				else
-					Necrosis_Msg(NECROSIS_MESSAGE.Error.NoSoulStoneSpell, "USER");
+					Necrosis_Msg(NECROSIS_MESSAGE.Error.NoSoulStonepell, "USER");
 				end
 			
 		end
@@ -2316,7 +2343,7 @@ function Necrosis_UseItem(type,button)
 			if StoneIDInSpellTable[2] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[2]].ID, "spell");
 			else
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoHealthStoneSpell, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoHealthStonepell, "USER");
 			end
 		end
 	-- Au tour de la pierre de sort
@@ -2336,7 +2363,7 @@ function Necrosis_UseItem(type,button)
 			if StoneIDInSpellTable[3] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].ID, "spell");
 			else
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoSpellStoneSpell, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoSpellStonepell, "USER");
 			end
 		end
 	-- Meme chose pour la pierre de feu
@@ -2346,12 +2373,12 @@ function Necrosis_UseItem(type,button)
 			if StoneIDInSpellTable[4] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].ID, "spell");
 			else
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoFireStoneSpell, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoFireStonepell, "USER");
 			end
 		-- Si la pierre existe, un clic droit l'�quipe / la d�s�quiper
 		elseif (FirestoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.FireStoneSpellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.FireStonepellInCombat, "USER");
 			else
 				UseContainerItem(FirestoneLocation[1], FirestoneLocation[2]);
 			end
@@ -2361,11 +2388,11 @@ function Necrosis_UseItem(type,button)
 			if StoneIDInSpellTable[5] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[5]].ID, "spell");
 			else
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoFelStoneSpell, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoFelStonepell, "USER");
 			end
 		elseif (FelstoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.FelStoneSpellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.FelStonepellInCombat, "USER");
 			else
 				UseContainerItem(FelstoneLocation[1], FelstoneLocation[2]);
 			end
@@ -2375,11 +2402,11 @@ function Necrosis_UseItem(type,button)
 			if StoneIDInSpellTable[6] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[6]].ID, "spell");
 			else
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoWrathStoneSpell, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoWrathStonepell, "USER");
 			end
 		elseif (WrathstoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.WrathStoneSpellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.WrathStonepellInCombat, "USER");
 			else
 				UseContainerItem(WrathstoneLocation[1], WrathstoneLocation[2]);
 			end
@@ -2471,61 +2498,43 @@ function Necrosis_UpdateButtonsScale()
 		HideUIPanel(NecrosisBuffMenuButton);
 		HideUIPanel(NecrosisCurseMenuButton);
 		HideUIPanel(NecrosisMountButton);
-		HideUIPanel(NecrosisFirestoneButton);
-		HideUIPanel(NecrosisSpellstoneButton);
 		HideUIPanel(NecrosisHealthstoneButton);
 		HideUIPanel(NecrosisSoulstoneButton);
-		HideUIPanel(NecrosisFelstoneButton);
-		HideUIPanel(NecrosisWrathstoneButton);
+		HideUIPanel(NecrosisStoneMenuButton);
 		local indexScale = -36;
-		for index=1, 10, 1 do
+		for index=1, 7, 1 do
 			if NecrosisConfig.StonePosition[index] then
-				if index == 1 and StoneIDInSpellTable[6] ~= 0 then
-					NecrosisWrathstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-					ShowUIPanel(NecrosisWrathstoneButton);
-					indexScale = indexScale + 36;
-				end
-				if index == 2 and StoneIDInSpellTable[5] ~= 0 then
-					NecrosisFelstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-					ShowUIPanel(NecrosisFelstoneButton);
-					indexScale = indexScale + 36;
-				end
-				if index == 3 and StoneIDInSpellTable[4] ~= 0 then
-					NecrosisFirestoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-					ShowUIPanel(NecrosisFirestoneButton);
-					indexScale = indexScale + 36;
-				end
-				if index == 4 and StoneIDInSpellTable[3] ~= 0 then
-					NecrosisSpellstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
-					ShowUIPanel(NecrosisSpellstoneButton);
-					indexScale = indexScale + 36;
-				end
-				if index == 5 and StoneIDInSpellTable[2] ~= 0 then
+				if index == 1 and StoneIDInSpellTable[2] ~= 0 then
 					NecrosisHealthstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisHealthstoneButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 6 and StoneIDInSpellTable[1] ~= 0 then
+				if index == 2 and StoneIDInSpellTable[1] ~= 0 then
 					NecrosisSoulstoneButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisSoulstoneButton);
 					indexScale = indexScale + 36;
 				end	
-				if index == 7 and BuffMenuCreate ~= {} then
+				if index == 3 and StoneMenuCreate ~= 0 then
+					NecrosisStoneMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
+					ShowUIPanel(NecrosisStoneMenuButton);
+					indexScale = indexScale + 36;
+				end
+				if index == 4 and BuffMenuCreate ~= {} then
 					NecrosisBuffMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisBuffMenuButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 8 and MountAvailable then
+				if index == 5 and MountAvailable then
 					NecrosisMountButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisMountButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 9 and PetMenuCreate ~= {} then
+				if index == 6 and PetMenuCreate ~= {} then
 					NecrosisPetMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisPetMenuButton);
 					indexScale = indexScale + 36;
 				end
-				if index == 10 and CurseMenuCreate ~= {} then
+				if index == 7 and CurseMenuCreate ~= {} then
 					NecrosisCurseMenuButton:SetPoint("CENTER", "NecrosisButton", "CENTER", ((40 * NBRScale) * cos(NecrosisConfig.NecrosisAngle-indexScale)), ((40 * NBRScale) * sin(NecrosisConfig.NecrosisAngle-indexScale)));
 					ShowUIPanel(NecrosisCurseMenuButton);
 					indexScale = indexScale + 36;
@@ -2539,42 +2548,34 @@ end
 
 -- Fonction (XML) pour r�tablir les points d'attache par d�faut des boutons
 function Necrosis_ClearAllPoints()
-	NecrosisFirestoneButton:ClearAllPoints();
-	NecrosisSpellstoneButton:ClearAllPoints();
 	NecrosisHealthstoneButton:ClearAllPoints();
 	NecrosisSoulstoneButton:ClearAllPoints();
 	NecrosisMountButton:ClearAllPoints();
 	NecrosisPetMenuButton:ClearAllPoints();
 	NecrosisBuffMenuButton:ClearAllPoints();
 	NecrosisCurseMenuButton:ClearAllPoints();
-	NecrosisFelstoneButton:ClearAllPoints();
-	NecrosisWrathstoneButton:ClearAllPoints();
+	NecrosisStoneMenuButton:ClearAllPoints();
 end
 
 -- Fonction (XML) pour �tendre la propri�t� NoDrag() du bouton principal de Necrosis sur tout ses boutons
 function Necrosis_NoDrag()
-	NecrosisFirestoneButton:RegisterForDrag("");
-	NecrosisSpellstoneButton:RegisterForDrag("");
 	NecrosisHealthstoneButton:RegisterForDrag("");
 	NecrosisSoulstoneButton:RegisterForDrag("");
 	NecrosisMountButton:RegisterForDrag("");
 	NecrosisPetMenuButton:RegisterForDrag("");
 	NecrosisBuffMenuButton:RegisterForDrag("");
-	NecrosisCurseMenuButton:RegisterForDrag("");
-	NecrosisWrathstoneButton:RegisterForDrag("");
+	NecrosisStoneMenuButton:RegisterForDrag("");
 end
 
 -- Fonction (XML) inverse de celle du dessus
 function Necrosis_Drag()
-	NecrosisFirestoneButton:RegisterForDrag("LeftButton");
-	NecrosisSpellstoneButton:RegisterForDrag("LeftButton");
 	NecrosisHealthstoneButton:RegisterForDrag("LeftButton");
 	NecrosisSoulstoneButton:RegisterForDrag("LeftButton");
 	NecrosisMountButton:RegisterForDrag("LeftButton");
 	NecrosisPetMenuButton:RegisterForDrag("LeftButton");
 	NecrosisBuffMenuButton:RegisterForDrag("LeftButton");
 	NecrosisCurseMenuButton:RegisterForDrag("LeftButton");
-	NecrosisWrathstoneButton:RegisterForDrag("LeftButton");
+	NecrosisStoneMenuButton:RegisterForDrag("LeftButton");
 end
 
 -- Ouverture du menu des buffs
@@ -2662,6 +2663,41 @@ function Necrosis_CurseMenu(button)
 	end
 end
 
+function Necrosis_StoneMenu(button)
+	if button == "MiddleButton" and LastStone ~= 0 then
+		Necrosis_StoneCast(LastStone, LastStoneClick);
+		return;
+	end
+	if StoneMenuCreate[1] == nil then
+		return;
+	end
+	StoneMenuShow = not StoneMenuShow;
+	if not StoneMenuShow then
+		StoneShow = false;
+		StoneVisible = false;
+		NecrosisStoneMenuButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\StoneMenuButton-01");
+		StoneMenuCreate[1]:ClearAllPoints();
+		StoneMenuCreate[1]:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", 3000, 3000);
+		AlphaStoneMenu = 1;
+	else
+		StoneShow = true;
+		NecrosisStoneMenuButton:SetNormalTexture("Interface\\Addons\\Necrosis\\UI\\StoneMenuButton-02");
+		if button == "RightButton" then
+			StoneVisible = true;
+		end
+		-- Sinon on affiche les icones
+		NecrosisStoneMenu1:SetAlpha(1);
+		NecrosisStoneMenu2:SetAlpha(1);
+		NecrosisStoneMenu3:SetAlpha(1);
+		NecrosisStoneMenu4:SetAlpha(1);
+		StoneMenuCreate[1]:ClearAllPoints();		
+		StoneMenuCreate[1]:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", ((36 / NecrosisConfig.StoneMenuPos) * 31) , 26);
+		AlphaPetVar = GetTime() + 3;
+		AlphaBuffVar = GetTime() + 6;
+		AlphaStoneVar = GetTime() + 6;
+	end
+end
+
 -- Ouverture du menu des d�mons
 function Necrosis_PetMenu(button)
 	if button == "MiddleButton" and LastDemon ~= 0 then
@@ -2707,11 +2743,13 @@ end
 function Necrosis_CreateMenu()
 	PetMenuCreate = {};
 	CurseMenuCreate = {};
+	StoneMenuCreate = {};
 	BuffMenuCreate = {};
 	local menuVariable = nil;
 	local PetButtonPosition = 0;
 	local BuffButtonPosition = 0;
 	local CurseButtonPosition = 0;
+	local StoneButtonPosition = 0;
 	
 	-- On cache toutes les icones des d�mons
 	for i = 1, 9, 1 do
@@ -2726,6 +2764,11 @@ function Necrosis_CreateMenu()
 	-- On cache toutes les icones des curses
 	for i = 1, 9, 1 do
 		menuVariable = getglobal("NecrosisCurseMenu"..i);
+		menuVariable:Hide();
+	end
+
+	for i = 1, 4, 1 do
+		menuVariable = getglobal("NecrosisStoneMenu"..i);
 		menuVariable:Hide();
 	end
 
@@ -2991,6 +3034,59 @@ function Necrosis_CreateMenu()
 	-- Maintenant que tous les boutons de curse sont plac�s les uns � c�t� des autres (hors de l'�cran), on affiche les disponibles
 	for i = 1, table.getn(CurseMenuCreate), 1 do
 		ShowUIPanel(CurseMenuCreate[i]);
+	end
+
+	-- Spellstone
+	if NECROSIS_ITEM.Spellstone and NECROSIS_SPELL_TABLE[47] then
+		menuVariable = getglobal("NecrosisStoneMenu1");
+		menuVariable:ClearAllPoints();
+		if StoneButtonPosition == 0 then 
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", 3000, 3000);
+		else
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenu"..StoneButtonPosition, "CENTER", ((36 / NecrosisConfig.StoneMenuPos) * 31), 0);
+		end
+		StoneButtonPosition = 1;
+		table.insert(StoneMenuCreate, menuVariable);
+	end
+	-- Firestone
+	if NECROSIS_ITEM.Firestone and NECROSIS_SPELL_TABLE[48] then
+		menuVariable = getglobal("NecrosisStoneMenu2");
+		menuVariable:ClearAllPoints();
+		if StoneButtonPosition == 0 then 
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", 3000, 3000);
+		else
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenu"..StoneButtonPosition, "CENTER", ((36 / NecrosisConfig.StoneMenuPos) * 31), 0);
+		end
+		StoneButtonPosition = 2;
+		table.insert(StoneMenuCreate, menuVariable);
+	end
+	-- Felstone
+	if NECROSIS_ITEM.Felstone and NECROSIS_SPELL_TABLE[49] then
+		menuVariable = getglobal("NecrosisStoneMenu3");
+		menuVariable:ClearAllPoints();
+		if StoneButtonPosition == 0 then 
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", 3000, 3000);
+		else
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenu"..StoneButtonPosition, "CENTER", ((36 / NecrosisConfig.StoneMenuPos) * 31), 0);
+		end
+		StoneButtonPosition = 3;
+		table.insert(StoneMenuCreate, menuVariable);
+	end
+	-- Wrathstone
+	if NECROSIS_ITEM.Wrathstone and NECROSIS_SPELL_TABLE[50] then
+		menuVariable = getglobal("NecrosisStoneMenu4");
+		menuVariable:ClearAllPoints();
+		if StoneButtonPosition == 0 then 
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenuButton", "CENTER", 3000, 3000);
+		else
+			menuVariable:SetPoint("CENTER", "NecrosisStoneMenu"..StoneButtonPosition, "CENTER", ((36 / NecrosisConfig.StoneMenuPos) * 31), 0);
+		end
+		StoneButtonPosition = 4;
+		table.insert(StoneMenuCreate, menuVariable);
+	end
+
+	for i = 1, table.getn(StoneMenuCreate), 1 do
+		ShowUIPanel(StoneMenuCreate[i]);
 	end
 end
 
