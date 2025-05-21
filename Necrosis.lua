@@ -1378,18 +1378,12 @@ function Necrosis_UpdateIcons()
 	-- Pierre de sort
 	-----------------------------------------------
 
-	-- Si la pierre est �quip�e, mode 3
-	local rightHand = GetInventoryItemTexture("player", 17);
-	if (rightHand == "Interface\\Icons\\INV_Misc_Gem_Sapphire_01" and not SpellstoneOnHand) then
-		SpellstoneMode = 3;
+	-- Pierre dans l'inventaire, mode 2
+	if (SpellstoneOnHand) then
+		SpellstoneMode = 2;
+	-- Pierre inexistante, mode 1
 	else
-		-- Pierre dans l'inventaire, mode 2
-		if (SpellstoneOnHand) then
-			SpellstoneMode = 2;
-		-- Pierre inexistante, mode 1
-		else
-			SpellstoneMode = 1;
-		end
+		SpellstoneMode = 1;
 	end
 
 	-- Affichage de l'icone li�e au mode
@@ -1398,11 +1392,8 @@ function Necrosis_UpdateIcons()
 	-- Pierre de feu
 	-----------------------------------------------
 
-	-- Pierre �quip�e = mode 3
-	if (rightHand == "Interface\\Icons\\INV_Misc_Gem_Bloodstone_02" and not FirestoneOnHand) then
-		FirestoneMode = 3;
 	-- Pierre dans l'inventaire = mode 2
-	elseif (FirestoneOnHand) then
+	if (FirestoneOnHand) then
 		FirestoneMode = 2;
 	-- Pierre inexistante = mode 1
 	else
@@ -2348,37 +2339,30 @@ function Necrosis_UseItem(type,button)
 		end
 	-- Au tour de la pierre de sort
 	elseif (type == "Spellstone") then
-		-- Si la pierre est �quip�e ou dans l'inventaire, un clic droit l'�quipe / la d�s�quipe
-		if (SpellstoneMode ~= 1 and button == "RightButton")
-			-- Si la pierre n'est pas �quip�e, le raccourci clavier �quipe la pierre
-			or (SpellstoneMode == 2 and button == "Binding") then
-			Necrosis_SwitchOffHand(type);
-		-- Si la pierre est �quip�e, un clic gauche utilise la pierre	
-		elseif SpellstoneMode == 3 then
-				local start, duration, enable = GetInventoryItemCooldown("player", 17) ;
-				UseInventoryItem(17);
-				if duration == 0 or start == 0 then Necrosis_SwitchOffHand("Off-hand"); end
-		-- sinon on cr�e la pierre :)
-		elseif (SpellstoneMode == 1) then
+		if (SpellstoneMode == 1) then
 			if StoneIDInSpellTable[3] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[3]].ID, "spell");
 			else
 				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoSpellStonepell, "USER");
 			end
+		elseif (SpellstoneMode == 2) then
+			if (PlayerCombat) then
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.SpellStoneSpellInCombat, "USER");
+			else
+				UseContainerItem(SpellstoneLocation[1], SpellstoneLocation[2]);
+			end
 		end
 	-- Meme chose pour la pierre de feu
 	elseif (type == "Firestone") then
-		-- Si la pierre n'existe pas, elle est cr��e
 		if (FirestoneMode == 1) then
 			if StoneIDInSpellTable[4] ~= 0 then
 				CastSpell(NECROSIS_SPELL_TABLE[StoneIDInSpellTable[4]].ID, "spell");
 			else
 				Necrosis_Msg(NECROSIS_MESSAGE.Error.NoFireStonepell, "USER");
 			end
-		-- Si la pierre existe, un clic droit l'�quipe / la d�s�quiper
 		elseif (FirestoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.FireStonepellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.FireStoneSpellInCombat, "USER");
 			else
 				UseContainerItem(FirestoneLocation[1], FirestoneLocation[2]);
 			end
@@ -2392,7 +2376,7 @@ function Necrosis_UseItem(type,button)
 			end
 		elseif (FelstoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.FelStonepellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.FelStoneSpellInCombat, "USER");
 			else
 				UseContainerItem(FelstoneLocation[1], FelstoneLocation[2]);
 			end
@@ -2406,7 +2390,7 @@ function Necrosis_UseItem(type,button)
 			end
 		elseif (WrathstoneMode == 2) then
 			if (PlayerCombat) then
-				Necrosis_Msg(NECROSIS_MESSAGE.Error.WrathStonepellInCombat, "USER");
+				Necrosis_Msg(NECROSIS_MESSAGE.Error.WrathStoneSpellInCombat, "USER");
 			else
 				UseContainerItem(WrathstoneLocation[1], WrathstoneLocation[2]);
 			end

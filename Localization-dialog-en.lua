@@ -208,6 +208,7 @@ function Necrosis_Localization_Dialog_En()
 			["NoFelStoneSpell"] = "You do not have any Felstone creation spell",
 			["WrathStoneSpellInCombat"] = "You cannot use a Wrathstone in combat",
 			["NoWrathStoneSpell"] = "You do not have any Wrathstone creation spell",
+			["SpellStoneSpellInCombat"] = "You cannot use a Spellstone in combat",
 			["NoSpellStoneSpell"] = "You do not have any Spellstone creation spell",
 			["NoHealthStoneSpell"] = "You do not have any Healthstone creation spell",
 			["NoSoulStoneSpell"] = "You do not have any Soulstone creation spell",
