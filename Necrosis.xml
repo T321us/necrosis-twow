@@ -699,6 +699,11 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+				HideUIPanel(this);
+			</OnLoad>
+			<OnLoad>
 				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
 				HideUIPanel(this);
 			</OnLoad>
@@ -711,7 +716,15 @@
 			<OnClick>
 				Necrosis_PetMenu(arg1);
 			</OnClick>
-
+			<OnDragStart>
+				if not NecrosisLockServ then Necrosis_OnDragStart(this); end
+			</OnDragStart>
+			<OnDragStop>
+				Necrosis_OnDragStop(this);
+			</OnDragStop>
+			<OnMouseUp>
+				Necrosis_OnDragStop(this);
+			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\PetMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\PetMenuButton-02"/>
