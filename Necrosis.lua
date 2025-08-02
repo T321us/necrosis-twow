@@ -494,73 +494,72 @@ function Necrosis_OnUpdate()
 		end
 		Necrosis_UpdateIcons();
 	end
-	
-	-- Parcours du tableau des Timers
-	local GraphicalTimer = {texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {}};
-	if SpellTimer then
-		for index = 1, table.getn(SpellTimer), 1 do
-			if SpellTimer[index] then
-				if (GetTime() <= SpellTimer[index].TimeMax) then
-					-- Cr�ation de l'affichage des timers
-					display, SpellGroup, GraphicalTimer, TimerTable = Necrosis_DisplayTimer(display, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable);
-				end
-				-- Action toutes les secondes
-				if (update) then
-					-- On enl�ve les timers termin�s
-					local TimeLocal = GetTime();
-					if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
-						-- Si le timer �tait celui de la Pierre d'�me, on pr�vient le D�moniste
-						if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
-							Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd, "USER");
-							SpellTimer[index].Target = "";
-							SpellTimer[index].TimeMax = -1;
-							if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd); end
-							Necrosis_RemoveFrame(SpellTimer[index].Gtimer, TimerTable);
-								-- On met � jour l'apparence du bouton de la pierre d'�me
-							Necrosis_UpdateIcons();
-						-- Sinon on enl�ve le timer silencieusement (mais pas en cas d'enslave)
-						elseif SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
-							index = 0;
-							break;
-						end
+
+	if NecrosisConfig.ShowSpellTimers or NecrosisConfig.Graphical then
+		-- Parcours du tableau des Timers
+		local GraphicalTimer = {texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {}};
+		if SpellTimer then
+			for index = 1, table.getn(SpellTimer), 1 do
+				if SpellTimer[index] then
+					if (GetTime() <= SpellTimer[index].TimeMax) then
+						-- Cr�ation de l'affichage des timers
+						display, SpellGroup, GraphicalTimer, TimerTable = Necrosis_DisplayTimer(display, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable);
 					end
-					-- Si le D�moniste n'est plus sous l'emprise du Sacrifice
-					if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then -- Sacrifice
-						if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax ~= nil then
-							SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
-							index = 0;
-							break;
-						end
-					end
-					-- Si la cible vis�e n'est plus atteinte par un sort lanc� [r�sists]
-					if SpellTimer and (SpellTimer[index].Type == 4 or SpellTimer[index].Type == 5)
-						and SpellTimer[index].Target == UnitName("target")
-						then
-						-- On triche pour laisser le temps au mob de bien sentir qu'il est d�buff� ^^
-						if TimeLocal >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 1.5)
-							and SpellTimer[index] ~= 6 then
-							if not Necrosis_UnitHasEffect("target", SpellTimer[index].Name) then
+					-- Action toutes les secondes
+					if (update) then
+						-- On enl�ve les timers termin�s
+						local TimeLocal = GetTime();
+						if TimeLocal >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
+							-- Si le timer �tait celui de la Pierre d'�me, on pr�vient le D�moniste
+							if SpellTimer[index].Name == NECROSIS_SPELL_TABLE[11].Name then
+								Necrosis_Msg(NECROSIS_MESSAGE.Information.SoulstoneEnd, "USER");
+								SpellTimer[index].Target = "";
+								SpellTimer[index].TimeMax = -1;
+								if NecrosisConfig.Sound then PlaySoundFile(NECROSIS_SOUND.SoulstoneEnd); end
+								Necrosis_RemoveFrame(SpellTimer[index].Gtimer, TimerTable);
+									-- On met � jour l'apparence du bouton de la pierre d'�me
+								Necrosis_UpdateIcons();
+							-- Sinon on enl�ve le timer silencieusement (mais pas en cas d'enslave)
+							elseif SpellTimer[index].Name ~= NECROSIS_SPELL_TABLE[10].Name then
 								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
 								index = 0;
 								break;
 							end
 						end
+						-- Si le D�moniste n'est plus sous l'emprise du Sacrifice
+						if SpellTimer and SpellTimer[index].Name == NECROSIS_SPELL_TABLE[17].Name then -- Sacrifice
+							if not Necrosis_UnitHasEffect("player", SpellTimer[index].Name) and SpellTimer[index].TimeMax ~= nil then
+								SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
+								index = 0;
+								break;
+							end
+						end
+						-- Si la cible vis�e n'est plus atteinte par un sort lanc� [r�sists]
+						if SpellTimer and (SpellTimer[index].Type == 4 or SpellTimer[index].Type == 5)
+							and SpellTimer[index].Target == UnitName("target")
+							then
+							-- On triche pour laisser le temps au mob de bien sentir qu'il est d�buff� ^^
+							if TimeLocal >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 1.5)
+								and SpellTimer[index] ~= 6 then
+								if not Necrosis_UnitHasEffect("target", SpellTimer[index].Name) then
+									SpellTimer, TimerTable = Necrosis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
+									index = 0;
+									break;
+								end
+							end
+						end
 					end
 				end
 			end
-		end
-	else
-		for i = 1, 10, 1 do
-			local frameName = "NecrosisTarget"..i.."Text";
-			local frameItem = getglobal(frameName);
-			if frameItem:IsShown() then
-				frameItem:Hide();
+		else
+			for i = 1, 10, 1 do
+				local frameName = "NecrosisTarget"..i.."Text";
+				local frameItem = getglobal(frameName);
+				if frameItem:IsShown() then
+					frameItem:Hide();
+				end
 			end
 		end
-	end
-
-	if NecrosisConfig.ShowSpellTimers or NecrosisConfig.Graphical then
 		-- Si affichage de timer texte
 		if not NecrosisConfig.Graphical then
 			-- Coloration de l'affichage des timers
