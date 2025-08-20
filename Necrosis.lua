@@ -2639,7 +2639,7 @@ function Necrosis_CurseMenu(button)
 		NecrosisCurseMenu8:SetAlpha(1);
 		NecrosisCurseMenu9:SetAlpha(1);
 		CurseMenuCreate[1]:ClearAllPoints();		
-		CurseMenuCreate[1]:SetPoint("CENTER", "NecrosisCurseMenuButton", "CENTER", ((36 / NecrosisConfig.CurseMenuPos) * 31) , -26);
+		CurseMenuCreate[1]:SetPoint("CENTER", "NecrosisCurseMenuButton", "CENTER", ((36 / NecrosisConfig.CurseMenuPos) * 31) , 26);
 		AlphaPetVar = GetTime() + 3;
 		AlphaBuffVar = GetTime() + 6;
 		AlphaCurseVar = GetTime() + 6;

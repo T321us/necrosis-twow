@@ -76,7 +76,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\SpellTimerButton-Highlight"/>
 	</Button>
 
-	<Button name="NecrosisButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="58" y="58"/>
 		</Size>
@@ -134,7 +134,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Shard"/>
 	</Button>
 
-	<Button name="NecrosisSoulstoneButton" hidden="false" parent="UIParent" movable="true">
+	<Button name="NecrosisSoulstoneButton" frameStrata="MEDIUM" hidden="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -174,7 +174,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="NecrosisHealthstoneButton" hidden="false" parent="UIParent" movable="true">
+	<Button name="NecrosisHealthstoneButton" frameStrata="MEDIUM" hidden="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -214,7 +214,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 	
-	<Button name="NecrosisMountButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisMountButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -254,7 +254,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\MountButton-02"/>
 	</Button>
 
-	<Button name="NecrosisBuffMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenuButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -294,7 +294,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\BuffMenuButton-02"/>
 	</Button>
 
-	<Button name="NecrosisBuffMenu1" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu1" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -323,7 +323,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\ArmureDemo-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\ArmureDemo-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu2" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu2" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -352,7 +352,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Aqua-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Aqua-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu3" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu3" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -381,7 +381,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Invisible-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Invisible-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu4" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu4" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -410,7 +410,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Kilrogg-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Kilrogg-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu5" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu5" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -439,7 +439,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\TPButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\TPButton-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu6" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu6" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -468,7 +468,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Radar-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Radar-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu7" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu7" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -497,7 +497,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\ShadowWard-02"/>
 	</Button>
-	<Button name="NecrosisBuffMenu8" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisBuffMenu8" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -527,7 +527,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Banish-02"/>
 	</Button>
 
-	<Button name="NecrosisStoneMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisStoneMenuButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -566,7 +566,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\StoneMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\StoneMenuButton-02"/>
 	</Button>
-	<Button name="NecrosisStoneMenu1" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisStoneMenu1" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -596,7 +596,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="NecrosisStoneMenu2" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisStoneMenu2" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -626,7 +626,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="NecrosisStoneMenu3" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisStoneMenu3" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -656,7 +656,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="NecrosisStoneMenu4" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisStoneMenu4" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -686,7 +686,7 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenuButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -730,7 +730,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\PetMenuButton-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu1" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu1" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -760,7 +760,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Domination-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu2" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu2" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -790,7 +790,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Imp-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu3" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu3" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -820,7 +820,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Voidwalker-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu4" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu4" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -850,7 +850,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Succubus-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu5" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu5" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -880,7 +880,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Felhunter-02"/>
 	</Button>
 	
-	<Button name="NecrosisPetMenu6" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu6" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -910,7 +910,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Infernal-02"/>
 	</Button>
 
-	<Button name="NecrosisPetMenu7" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu7" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -939,7 +939,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Doomguard-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Doomguard-02"/>
 	</Button>
-	<Button name="NecrosisPetMenu8" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu8" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -968,7 +968,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Enslave-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Enslave-02"/>
 	</Button>
-	<Button name="NecrosisPetMenu9" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisPetMenu9" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -997,9 +997,8 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Sacrifice-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Sacrifice-02"/>
 	</Button>
-
 	
-	<Button name="NecrosisCurseMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenuButton" frameStrata="MEDIUM" hidden="false" enableMouse="true" toplevel="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -1039,7 +1038,7 @@
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\CurseMenuButton-02"/>
 	</Button>
 
-	<Button name="NecrosisCurseMenu1" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu1" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1068,7 +1067,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Amplify-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Amplify-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu2" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu2" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1097,7 +1096,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Weakness-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Weakness-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu3" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu3" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1126,7 +1125,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Agony-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Agony-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu4" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu4" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1155,7 +1154,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Reckless-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Reckless-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu5" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu5" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1184,7 +1183,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Tongues-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Tongues-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu6" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu6" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1213,7 +1212,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Exhaust-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Exhaust-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu7" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu7" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1242,7 +1241,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Elements-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Elements-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu8" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu8" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1271,7 +1270,7 @@
 		<NormalTexture file="Interface\AddOns\Necrosis\UI\Shadow-01"/>
 		<HighlightTexture file="Interface\AddOns\Necrosis\UI\Shadow-02"/>
 	</Button>
-	<Button name="NecrosisCurseMenu9" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="NecrosisCurseMenu9" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1345,7 +1344,7 @@
 			<OnClick>
 				Necrosis_CastShadowBolt();
 			</OnClick>
-        		<OnLoad>
+    		<OnLoad>
 				HideUIPanel(NecrosisShadowTranceButton);
 			</OnLoad>
 		</Scripts>
